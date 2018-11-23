@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>file-storage-proto</artifactId>
-    <version>0.1</version>
+    <version>1.3-f13ff1a</version>
     <packaging>jar</packaging>
 
     <name>file-storage-proto</name>

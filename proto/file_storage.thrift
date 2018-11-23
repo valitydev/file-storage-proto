@@ -5,6 +5,8 @@ namespace erlang file_storage
 typedef string Timestamp
 // id файла
 typedef string FileId
+// имя файла
+typedef string FileName
 // ссылка на файл
 typedef string URL
 // дополнительная информация о файле
@@ -13,26 +15,29 @@ typedef map<string, string> Metadata
 exception FileNotFound {}
 
 struct FileData {
-    // имя документа
-    1: required string name,
-    // дата загрузки документа
-    2: required Timestamp created_at
+    // id файла
+    1: required FileId file_id
+    // имя файла
+    2: required FileName file_name
+    // дата загрузки файла
+    3: required Timestamp created_at
+    // сигнатура
+    4: required string md5
     // дополнительная информация о файле
-    3: required Metadata metadata
+    5: required Metadata metadata
+}
+
+struct NewFileResult {
+    // ссылка на файл для дальнейшей выгрузки на сервер
+    1: required URL upload_url
+    // id файла
+    2: required FileId file_id
 }
 
 /*
 * Сервис для загрузки и выгрузки файлов
 * */
 service FileStorage {
-
-    /*
-    * Создать пустой файл в хранилище
-    * file_data - данные о файле, которые сохраняются как метаданные при создании пустого файла
-    *
-    * Возвращает id файла
-    * */
-    FileId CreateEmptyFile (1: FileData file_data)
 
     /*
     * Получить данные о файле
@@ -46,15 +51,14 @@ service FileStorage {
         throws (1: FileNotFound ex1)
 
     /*
-    * Сгенерировать ссылку на файл для выгрузки на сервер
-    * file_id - id файла
+    * Создать новый файл и сгенерировать ссылку для выгрузки файла на сервер
+    * file_name - имя файла
+    * metadata - данные о файле, которые сохраняются как метаданные при создании нового файла
+    * expires_at - время жизни ссылки и файла, от создания до выгрузки файла на сервер
     *
-    * Возвращает ссылку на файл для дальнейшей выгрузки на сервер
-    *
-    * FileNotFound - файл не найден
+    * Возвращает данные о файле, необходимые для выгрузки на сервер
     * */
-    URL GenerateUploadUrl (1: FileId file_id)
-        throws (1: FileNotFound ex1)
+    NewFileResult CreateNewFile (1: FileName file_name, 2: Metadata metadata, 3: Timestamp expires_at)
 
     /*
     * Сгенерировать ссылку на файл для загрузки с сервера
