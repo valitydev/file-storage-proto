@@ -1,16 +1,19 @@
+include "base.thrift"
+include "msgpack.thrift"
+
 namespace java com.rbkmoney.file.storage
 namespace erlang file_storage
 
 // время
-typedef string Timestamp
+typedef base.Timestamp Timestamp
 // id файла
-typedef string FileId
+typedef base.ID FileId
 // имя файла
 typedef string FileName
 // ссылка на файл
 typedef string URL
 // дополнительная информация о файле
-typedef map<string, string> Metadata
+typedef map<string, msgpack.Value> Metadata
 
 exception FileNotFound {}
 
@@ -30,8 +33,8 @@ struct FileData {
 struct NewFileResult {
     // ссылка на файл для дальнейшей выгрузки на сервер
     1: required URL upload_url
-    // id файла
-    2: required FileId file_id
+    // метаданные файла
+    2: required FileData file_data
 }
 
 /*
@@ -43,7 +46,7 @@ service FileStorage {
     * Получить данные о файле
     * file_id - id файла
     *
-    * Возвращает данные о файле, которые хранятеся как метаданные файла
+    * Возвращает данные о файле, которые хранятся как метаданные файла
     *
     * FileNotFound - файл не найден
     * */
