@@ -24,10 +24,8 @@ struct FileData {
     2: required FileName file_name
     // дата загрузки файла
     3: required Timestamp created_at
-    // сигнатура
-    4: required string md5
     // дополнительная информация о файле
-    5: required Metadata metadata
+    4: required Metadata metadata
 }
 
 struct NewFileResult {
