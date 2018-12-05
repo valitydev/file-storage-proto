@@ -8,6 +8,8 @@ namespace erlang file_storage
 typedef base.Timestamp Timestamp
 // id файла
 typedef base.ID FileId
+// id данных файла
+typedef base.ID FileDataId
 // имя файла
 typedef string FileName
 // ссылка на файл
@@ -18,14 +20,16 @@ typedef map<string, msgpack.Value> Metadata
 exception FileNotFound {}
 
 struct FileData {
+    // id данных файла
+    1: required FileDataId filedata_id
     // id файла
-    1: required FileId file_id
+    2: required FileId file_id
     // имя файла
-    2: required FileName file_name
+    3: required FileName file_name
     // дата загрузки файла
-    3: required Timestamp created_at
+    4: required Timestamp created_at
     // дополнительная информация о файле
-    4: required Metadata metadata
+    5: required Metadata metadata
 }
 
 struct NewFileResult {
@@ -39,17 +43,6 @@ struct NewFileResult {
 * Сервис для загрузки и выгрузки файлов
 * */
 service FileStorage {
-
-    /*
-    * Получить данные о файле
-    * file_id - id файла
-    *
-    * Возвращает данные о файле, которые хранятся как метаданные файла
-    *
-    * FileNotFound - файл не найден
-    * */
-    FileData GetFileData (1: FileId file_id)
-        throws (1: FileNotFound ex1)
 
     /*
     * Создать новый файл и сгенерировать ссылку для выгрузки файла на сервер
@@ -70,7 +63,18 @@ service FileStorage {
     *
     * FileNotFound - файл не найден
     * */
-    URL GenerateDownloadUrl (1: FileId file_id, 2: Timestamp expires_at)
+    URL GenerateDownloadUrl (1: FileDataId filedata_id, 2: Timestamp expires_at)
+        throws (1: FileNotFound ex1)
+
+    /*
+    * Получить данные о файле
+    * file_id - id файла
+    *
+    * Возвращает данные о файле, которые хранятся как метаданные файла
+    *
+    * FileNotFound - файл не найден
+    * */
+    FileData GetFileData (1: FileDataId filedata_id)
         throws (1: FileNotFound ex1)
 
 }
