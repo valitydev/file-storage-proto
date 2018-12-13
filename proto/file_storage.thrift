@@ -7,9 +7,7 @@ namespace erlang file_storage
 // время
 typedef base.Timestamp Timestamp
 // id файла
-typedef base.ID FileId
-// id данных файла
-typedef base.ID FileDataId
+typedef base.ID ID
 // имя файла
 typedef string FileName
 // ссылка на файл
@@ -20,10 +18,8 @@ typedef map<string, msgpack.Value> Metadata
 exception FileNotFound {}
 
 struct FileData {
-    // id данных файла
-    1: required FileDataId filedata_id
     // id файла
-    2: required FileId file_id
+    1: required ID id
     // имя файла
     3: required FileName file_name
     // дата загрузки файла
@@ -52,29 +48,29 @@ service FileStorage {
     *
     * Возвращает данные о файле, необходимые для выгрузки на сервер
     * */
-    NewFileResult CreateNewFile (1: FileName file_name, 2: Metadata metadata, 3: Timestamp expires_at)
+    NewFileResult CreateNewFile (1: Metadata metadata, 3: Timestamp expires_at)
 
     /*
     * Сгенерировать ссылку на файл для загрузки с сервера
-    * file_id - id файла
+    * id - id файла
     * expires_at - время до которого ссылка будет считаться действительной
     *
     * Возвращает ссылку на файл для дальнейшей загрузки с сервера
     *
     * FileNotFound - файл не найден
     * */
-    URL GenerateDownloadUrl (1: FileDataId filedata_id, 2: Timestamp expires_at)
+    URL GenerateDownloadUrl (1: ID id, 2: Timestamp expires_at)
         throws (1: FileNotFound ex1)
 
     /*
     * Получить данные о файле
-    * file_id - id файла
+    * id - id файла
     *
     * Возвращает данные о файле, которые хранятся как метаданные файла
     *
     * FileNotFound - файл не найден
     * */
-    FileData GetFileData (1: FileDataId filedata_id)
+    FileData GetFileData (1: ID id)
         throws (1: FileNotFound ex1)
 
 }
