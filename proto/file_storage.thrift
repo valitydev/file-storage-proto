@@ -31,8 +31,8 @@ struct FileData {
 struct NewFileResult {
     // ссылка на файл для дальнейшей выгрузки на сервер
     1: required URL upload_url
-    // метаданные файла
-    2: required FileData file_data
+    // id файла
+    2: required ID id
 }
 
 /*
