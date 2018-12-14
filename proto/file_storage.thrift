@@ -47,7 +47,7 @@ service FileStorage {
     *
     * Возвращает данные о файле, необходимые для выгрузки на сервер
     * */
-    NewFileResult CreateNewFile (1: Metadata metadata, 3: Timestamp expires_at)
+    NewFileResult CreateNewFile (1: Metadata metadata, 2: Timestamp expires_at)
 
     /*
     * Сгенерировать ссылку на файл для загрузки с сервера
