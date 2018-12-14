@@ -29,10 +29,10 @@ struct FileData {
 }
 
 struct NewFileResult {
-    // ссылка на файл для дальнейшей выгрузки на сервер
-    1: required URL upload_url
     // id файла
-    2: required ID id
+    1: required ID id
+    // ссылка на файл для дальнейшей выгрузки на сервер
+    2: required URL upload_url
 }
 
 /*
