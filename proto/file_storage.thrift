@@ -7,7 +7,7 @@ namespace erlang file_storage
 // время
 typedef base.Timestamp Timestamp
 // id файла
-typedef base.ID ID
+typedef base.ID FileDataId
 // имя файла
 typedef string FileName
 // ссылка на файл
@@ -19,7 +19,7 @@ exception FileNotFound {}
 
 struct FileData {
     // id файла
-    1: required ID id
+    1: required FileDataId id
     // имя файла
     3: required FileName file_name
     // дата загрузки файла
@@ -30,7 +30,7 @@ struct FileData {
 
 struct NewFileResult {
     // id файла
-    1: required ID id
+    1: required FileDataId id
     // ссылка на файл для дальнейшей выгрузки на сервер
     2: required URL upload_url
 }
@@ -58,7 +58,7 @@ service FileStorage {
     *
     * FileNotFound - файл не найден
     * */
-    URL GenerateDownloadUrl (1: ID id, 2: Timestamp expires_at)
+    URL GenerateDownloadUrl (1: FileDataId id, 2: Timestamp expires_at)
         throws (1: FileNotFound ex1)
 
     /*
@@ -69,7 +69,7 @@ service FileStorage {
     *
     * FileNotFound - файл не найден
     * */
-    FileData GetFileData (1: ID id)
+    FileData GetFileData (1: FileDataId id)
         throws (1: FileNotFound ex1)
 
 }
