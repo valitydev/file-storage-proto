@@ -1,5 +1,5 @@
-namespace java   com.rbkmoney.fistful.msgpack
-namespace erlang msgp
+namespace java com.rbkmoney.file.storage.msgpack
+namespace erlang file_storage_msgp
 
 /**
  * Значение в msgpack, согласно [спецификации](https://github.com/msgpack/msgpack/blob/master/spec.md).
