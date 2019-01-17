@@ -19,7 +19,7 @@ exception FileNotFound {}
 
 struct FileData {
     // id файла
-    1: required FileDataId id
+    1: required FileDataId file_data_id
     // имя файла
     3: required FileName file_name
     // дата загрузки файла
@@ -30,7 +30,7 @@ struct FileData {
 
 struct NewFileResult {
     // id файла
-    1: required FileDataId id
+    1: required FileDataId file_data_id
     // ссылка на файл для дальнейшей выгрузки на сервер
     2: required URL upload_url
 }
@@ -51,25 +51,25 @@ service FileStorage {
 
     /*
     * Сгенерировать ссылку на файл для загрузки с сервера
-    * id - id файла
+    * file_data_id - id файла
     * expires_at - время до которого ссылка будет считаться действительной
     *
     * Возвращает ссылку на файл для дальнейшей загрузки с сервера
     *
     * FileNotFound - файл не найден
     * */
-    URL GenerateDownloadUrl (1: FileDataId id, 2: Timestamp expires_at)
+    URL GenerateDownloadUrl (1: FileDataId file_data_id, 2: Timestamp expires_at)
         throws (1: FileNotFound ex1)
 
     /*
     * Получить данные о файле
-    * id - id файла
+    * file_data_id - id файла
     *
     * Возвращает данные о файле, которые хранятся как метаданные файла
     *
     * FileNotFound - файл не найден
     * */
-    FileData GetFileData (1: FileDataId id)
+    FileData GetFileData (1: FileDataId file_data_id)
         throws (1: FileNotFound ex1)
 
 }

@@ -5,7 +5,7 @@
  * `2016-03-22T06:12:27Z`.
  */
 
- namespace java com.rbkmoney.fistful.base
+namespace java com.rbkmoney.fistful.base
 
 typedef string Timestamp
 
