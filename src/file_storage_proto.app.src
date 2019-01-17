@@ -1,0 +1,9 @@
+{application, file_storage_proto, [
+    {description, "Thrift proto for file storage"},
+    {vsn, "0.1.0"},
+    {applications, [
+        kernel,
+        stdlib,
+        fistful_proto
+    ]}
+]}.
