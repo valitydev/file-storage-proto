@@ -1,4 +1,4 @@
-namespace java com.rbkmoney.file.storage.base
+namespace java dev.vality.file.storage.base
 namespace erlang file_storage_base
 
 /**

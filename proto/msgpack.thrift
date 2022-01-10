@@ -1,4 +1,4 @@
-namespace java com.rbkmoney.file.storage.msgpack
+namespace java dev.vality.file.storage.msgpack
 namespace erlang file_storage_msgp
 
 /**
