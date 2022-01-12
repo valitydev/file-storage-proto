@@ -1,7 +1,7 @@
 include "base.thrift"
 include "msgpack.thrift"
 
-namespace java com.rbkmoney.file.storage
+namespace java dev.vality.file.storage
 namespace erlang file_storage
 
 // время
