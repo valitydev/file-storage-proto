@@ -1,0 +1,26 @@
+{
+  "name": "@vality/file-storage-proto",
+  "version": "1.0.0",
+  "scripts": {
+    "codegen": "thrift-codegen"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valitydev/file-storage-proto.git"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/valitydev/file-storage-proto#readme",
+  "files": [
+    "lib/**/*.{js,d.ts,json}",
+    "**/*.thrift"
+  ],
+  "main": "./lib/file_storage.js",
+  "types": "./lib/file_storage.d.ts",
+  "devDependencies": {
+    "@vality/thrift-codegen": "0.1.1-c81b4b7.0"
+  }
+}
