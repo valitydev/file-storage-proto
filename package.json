@@ -21,6 +21,7 @@
   "main": "./lib/file_storage.js",
   "types": "./lib/file_storage.d.ts",
   "devDependencies": {
-    "@vality/thrift-codegen": "0.1.1-c81b4b7.0"
+    "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
+    "damsel": "github:valitydev/damsel#d384c125d16c0204e23b0d96a6ef791244a72315"
   }
 }

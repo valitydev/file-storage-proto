@@ -1,5 +1,5 @@
-include "base.thrift"
-include "msgpack.thrift"
+include "proto/base.thrift"
+include "proto/msgpack.thrift"
 
 namespace java dev.vality.file.storage
 namespace erlang file_storage
