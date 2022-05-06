@@ -17,6 +17,28 @@
     <name>file-storage-proto</name>
     <description>Generates jar artifact containing compiled thrift classes based on generated thrift IDL files
     </description>
+    <url>https://github.com/valitydev/file-storage-proto</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <email>devs@vality.dev</email>
+            <organization>Vality</organization>
+            <organizationUrl>https://vality.dev</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/valitydev/file-storage-proto</connection>
+        <developerConnection>scm:git:ssh://github.com/valitydev/file-storage-proto</developerConnection>
+        <url>https://github.com/valitydev/file-storage-proto/tree/master</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,11 +57,26 @@
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>dev.vality</groupId>
+            <artifactId>damsel</artifactId>
+            <version>1.563-d384c12</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
-
+        <resources>
+            <resource>
+                <directory>${project.basedir}/proto</directory>
+                <targetPath>${project.build.outputDirectory}/proto</targetPath>
+                <includes>
+                    <include>*.thrift</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!-- THRIFT -->
             <plugin>
@@ -61,7 +98,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -75,8 +111,8 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>dev.vality.damsel</pattern>
-                                    <shadedPattern>dev.vality.damsel.v${commit.number}</shadedPattern>
+                                    <pattern>dev.vality.file.storage</pattern>
+                                    <shadedPattern>dev.vality.file.storage.v${commit.number}</shadedPattern>
                                 </relocation>
                             </relocations>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
