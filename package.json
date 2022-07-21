@@ -22,6 +22,6 @@
   "types": "./lib/file_storage.d.ts",
   "devDependencies": {
     "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
-    "damsel": "github:valitydev/damsel#d384c125d16c0204e23b0d96a6ef791244a72315"
+    "msgpack-proto": "github:valitydev/msgpack-proto#ce882a7f1c23248cab840fd672f247567679c9a4"
   }
 }
