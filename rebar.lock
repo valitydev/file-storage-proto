@@ -1,4 +1,4 @@
-[{<<"damsel">>,
-  {git,"https://github.com/valitydev/damsel",
-       {ref,"d384c125d16c0204e23b0d96a6ef791244a72315"}},
+[{<<"msgpack_proto">>,
+  {git,"https://github.com/valitydev/msgpack-proto.git",
+       {ref,"7e447496aa5df4a5f1ace7ef2e3c31248b2a3ed0"}},
   0}].

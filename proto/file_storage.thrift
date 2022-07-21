@@ -1,8 +1,8 @@
-include "proto/base.thrift"
+include "base.thrift"
 include "proto/msgpack.thrift"
 
 namespace java dev.vality.file.storage
-namespace erlang file_storage
+namespace erlang filestore.storage
 
 // время
 typedef base.Timestamp Timestamp
