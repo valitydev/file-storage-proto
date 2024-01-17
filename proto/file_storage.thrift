@@ -8,7 +8,7 @@ namespace erlang filestore.storage
 typedef base.Timestamp Timestamp
 // id файла
 typedef base.ID FileDataID
-// id пепедачи файла по частям
+// id передачи файла по частям
 typedef base.ID MultipartUploadID
 // имя файла
 typedef string FileName
