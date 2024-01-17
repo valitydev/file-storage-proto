@@ -9,13 +9,13 @@ typedef base.Timestamp Timestamp
 // id файла
 typedef base.ID FileDataID
 // id пепедачи файла по частям
-typedef base.ID UploadID
+typedef base.ID MultipartUploadID
 // имя файла
 typedef string FileName
 // ссылка на файл
 typedef string URL
 // id переданной части файла
-typedef base.ID ETag
+typedef base.ID PartID
 // дополнительная информация о файле
 typedef map<string, msgpack.Value> Metadata
 
@@ -43,14 +43,14 @@ struct CreateMultipartUploadResult {
     // id файла
     1: required FileDataID file_data_id
     // id передачи файла по частям
-    2: required UploadID upload_id
+    2: required MultipartUploadID multipart_upload_id
 }
 
 struct UploadMultipartRequestData {
     // id файла
     1: required FileDataID file_data_id
     // id передачи файла по частям
-    2: required UploadID upload_id
+    2: required MultipartUploadID multipart_upload_id
     // номер передаваемой части файла
     3: required i32 part_number
     // содержимое части файла
@@ -60,8 +60,8 @@ struct UploadMultipartRequestData {
 }
 
 struct UploadMultipartResult {
-    // тег части файла
-    1: required ETag e_tag
+    // id части файла
+    1: required PartID part_id
     // номер переданной части файла
     2: required i32 part_number
 }
@@ -70,7 +70,7 @@ struct CompleteMultipartUploadRequest {
     // id файла
     1: required FileDataID file_data_id
     // id передачи файла по частям
-    2: required UploadID upload_id
+    2: required MultipartUploadID multipart_upload_id
     // список id переданных частей файла
     3: required list<UploadMultipartResult> completed_parts
 }
