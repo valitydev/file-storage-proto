@@ -63,7 +63,7 @@ struct UploadMultipartResult {
     // id части файла
     1: required PartID part_id
     // номер переданной части файла
-    2: required i32 part_number
+    2: required i32 sequence_part
 }
 
 struct CompletedMultipart {
