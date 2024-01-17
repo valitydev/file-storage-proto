@@ -52,7 +52,7 @@ struct UploadMultipartRequestData {
     // id передачи файла по частям
     2: required MultipartUploadID multipart_upload_id
     // номер передаваемой части файла
-    3: required i32 part_number
+    3: required i32 sequence_part
     // содержимое части файла
     4: required binary content
     // размер части файла в байтах
@@ -66,13 +66,20 @@ struct UploadMultipartResult {
     2: required i32 part_number
 }
 
+struct CompletedMultipart {
+    // id части файла
+    1: required PartID part_id
+    // номер переданной части файла
+    2: required i32 sequence_part
+}
+
 struct CompleteMultipartUploadRequest {
     // id файла
     1: required FileDataID file_data_id
     // id передачи файла по частям
     2: required MultipartUploadID multipart_upload_id
     // список id переданных частей файла
-    3: required list<UploadMultipartResult> completed_parts
+    3: required list<CompletedMultipart> completed_parts
 }
 
 struct CompleteMultipartUploadResult {
@@ -132,7 +139,7 @@ service FileStorage {
     *
     * Возвращает данные для идентификации части в загружаемом файле
     * */
-    UploadMultipartResult UploadPart (1: UploadMultipartRequestData upload_multipart_request_data)
+    UploadMultipartResult UploadMultipart (1: UploadMultipartRequestData upload_multipart_request_data)
 
     /*
     * Завершение загрузки файла по частям и генерация ссылки на файл
