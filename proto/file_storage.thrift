@@ -150,4 +150,12 @@ service FileStorage {
     * */
     CompleteMultipartUploadResult CompleteMultipartUpload (1: CompleteMultipartUploadRequest complete_multipart_upload_request)
 
+    /*
+    * Удаление сохраненного файла
+    * file_data_id - идентификатор удаляемого файла
+    *
+    * FileNotFound - файл не найден
+     */
+    void DeleteFile (1: FileDataID file_data_id)
+        throws (1: FileNotFound ex1)
 }
