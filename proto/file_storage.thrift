@@ -125,6 +125,17 @@ service FileStorage {
         throws (1: FileNotFound ex1)
 
     /*
+    * Получить данные о файле, загруженном частями
+    * file_data_id - id файла
+    *
+    * Возвращает данные о файле, которые хранятся как метаданные файла
+    *
+    * FileNotFound - файл не найден
+    * */
+    FileData GetMultipartFileData (1: FileDataID file_data_id)
+        throws (1: FileNotFound ex1)
+
+    /*
     * Создать новую загрузку файла по частям
     * metadata - данные о файле, которые сохраняются как метаданные при создании нового файла
     *
