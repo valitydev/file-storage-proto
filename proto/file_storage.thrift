@@ -161,4 +161,16 @@ service FileStorage {
     * */
     CompleteMultipartUploadResult CompleteMultipartUpload (1: CompleteMultipartUploadRequest complete_multipart_upload_request)
 
+    /*
+    * Сгенерировать ссылку на файл, загруженный частями, для загрузки с сервера
+    * file_data_id - id файла
+    * expires_at - время до которого ссылка будет считаться действительной
+    *
+    * Возвращает ссылку на файл для дальнейшей загрузки с сервера
+    *
+    * FileNotFound - файл не найден
+    * */
+    URL GenerateMultipartDownloadUrl (1: FileDataID file_data_id, 2: Timestamp expires_at)
+        throws (1: FileNotFound ex1)
+
 }
