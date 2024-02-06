@@ -133,7 +133,7 @@ service FileStorage {
     * FileNotFound - файл не найден
     * */
     FileData GetMultipartFileData (1: FileDataID file_data_id)
-        throws (1: FileNotFound ex1)
+        throws (1: FileNotFound ex1) ( deprecated )
 
     /*
     * Создать новую загрузку файла по частям
@@ -171,6 +171,6 @@ service FileStorage {
     * FileNotFound - файл не найден
     * */
     URL GenerateMultipartDownloadUrl (1: FileDataID file_data_id, 2: Timestamp expires_at)
-        throws (1: FileNotFound ex1)
+        throws (1: FileNotFound ex1) ( deprecated )
 
 }
