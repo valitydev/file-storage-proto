@@ -21,7 +21,7 @@
   "main": "./lib/file_storage.js",
   "types": "./lib/file_storage.d.ts",
   "devDependencies": {
-    "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
+    "@vality/thrift-codegen": "0.1.1-edd512f.0",
     "msgpack-proto": "github:valitydev/msgpack-proto#ce882a7f1c23248cab840fd672f247567679c9a4"
   }
 }
