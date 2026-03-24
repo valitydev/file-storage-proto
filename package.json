@@ -2,7 +2,7 @@
   "name": "@vality/file-storage-proto",
   "version": "0.1.0",
   "scripts": {
-    "codegen": "thrift-codegen -i ./proto --n ccreports"
+    "codegen": "thrift-codegen -i ./proto -i ./node_modules/msgpack-proto --n file_storage"
   },
   "publishConfig": {
     "access": "public",
@@ -48,6 +48,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/valitydev/file-storage-proto#readme",
   "devDependencies": {
-    "@vality/thrift-codegen": "^3.2.0"
+    "@vality/thrift-codegen": "^3.2.0",
+    "msgpack-proto": "github:valitydev/msgpack-proto#ce882a7f1c23248cab840fd672f247567679c9a4"
   }
 }

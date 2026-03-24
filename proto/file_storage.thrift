@@ -239,7 +239,7 @@ service FileStorage {
     * DEPRECATED: этот multipart flow не вписывается в целевую концепцию orchestration над S3,
     * потому что сервис участвует в data plane и проксирует байты через себя.
     * */
-    CreateMultipartUploadResult CreateMultipartUpload (1: Metadata metadata) ( deprecated )
+    CreateMultipartUploadResult CreateMultipartUpload (1: Metadata metadata)
 
     /*
     * Загрузка части файла на сервер
@@ -251,7 +251,7 @@ service FileStorage {
     * DEPRECATED: этот multipart flow не вписывается в целевую концепцию orchestration над S3,
     * потому что сервис участвует в data plane и проксирует байты через себя.
     * */
-    UploadMultipartResult UploadMultipart (1: UploadMultipartRequestData upload_multipart_request_data) ( deprecated )
+    UploadMultipartResult UploadMultipart (1: UploadMultipartRequestData upload_multipart_request_data)
 
     /*
     * Завершение загрузки файла по частям и генерация ссылки на файл
@@ -264,7 +264,6 @@ service FileStorage {
     * потому что сервис участвует в data plane и проксирует байты через себя.
     * */
     CompleteMultipartUploadResult CompleteMultipartUpload (1: CompleteMultipartUploadRequest complete_multipart_upload_request)
-        ( deprecated )
 
 }
 
