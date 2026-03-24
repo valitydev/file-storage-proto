@@ -1,27 +1,53 @@
 {
   "name": "@vality/file-storage-proto",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "scripts": {
-    "codegen": "thrift-codegen"
+    "codegen": "thrift-codegen -i ./proto --n ccreports"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "types": "./dist/*.d.mts",
+        "default": "./dist/*.mjs"
+      },
+      "require": {
+        "types": "./dist/*.d.ts",
+        "default": "./dist/*.js"
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "proto"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/valitydev/file-storage-proto.git"
   },
   "license": "Apache-2.0",
   "homepage": "https://github.com/valitydev/file-storage-proto#readme",
-  "files": [
-    "lib/**/*.{js,d.ts,json}",
-    "**/*.thrift"
-  ],
-  "main": "./lib/file_storage.js",
-  "types": "./lib/file_storage.d.ts",
   "devDependencies": {
-    "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
-    "msgpack-proto": "github:valitydev/msgpack-proto#ce882a7f1c23248cab840fd672f247567679c9a4"
+    "@vality/thrift-codegen": "^3.2.0"
   }
 }
