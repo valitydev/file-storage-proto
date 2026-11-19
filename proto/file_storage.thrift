@@ -114,6 +114,24 @@ service FileStorage {
         throws (1: FileNotFound ex1)
 
     /*
+    * Сгенерировать ссылку на файл для загрузки с сервера с параметрами ответа
+    * file_data_id - id файла
+    * expires_at - время до которого ссылка будет считаться действительной
+    * file_name - имя файла для формирования Content-Disposition
+    * content_type - MIME-тип файла для формирования Content-Type
+    *
+    * Возвращает ссылку на файл для открытия в браузере и загрузки с исходным именем
+    *
+    * FileNotFound - файл не найден
+    * */
+    URL GenerateDownloadUrlWithOptions (
+        1: FileDataID file_data_id,
+        2: Timestamp expires_at,
+        3: FileName file_name,
+        4: string content_type
+    ) throws (1: FileNotFound ex1)
+
+    /*
     * Получить данные о файле
     * file_data_id - id файла
     *
