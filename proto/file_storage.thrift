@@ -149,9 +149,11 @@ service FileStorage {
     * Возвращает данные о файле, которые хранятся как метаданные файла
     *
     * FileNotFound - файл не найден
+    *
+    * Deprecated: используйте GetFileData
     * */
     FileData GetMultipartFileData (1: FileDataID file_data_id)
-        throws (1: FileNotFound ex1) ( deprecated )
+        throws (1: FileNotFound ex1)
 
     /*
     * Создать новую загрузку файла по частям
@@ -187,8 +189,10 @@ service FileStorage {
     * Возвращает ссылку на файл для дальнейшей загрузки с сервера
     *
     * FileNotFound - файл не найден
+    *
+    * Deprecated: используйте GenerateDownloadUrl
     * */
     URL GenerateMultipartDownloadUrl (1: FileDataID file_data_id, 2: Timestamp expires_at)
-        throws (1: FileNotFound ex1) ( deprecated )
+        throws (1: FileNotFound ex1)
 
 }
