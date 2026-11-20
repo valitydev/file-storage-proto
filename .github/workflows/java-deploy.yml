@@ -6,9 +6,14 @@ on:
       - "master"
       - "main"
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     uses: valitydev/java-workflow/.github/workflows/maven-thrift-deploy.yml@v4
+    with:
+      java-version: "21"
     secrets:
       server-username: ${{ secrets.OSSRH_USERNAME }}
       server-password: ${{ secrets.OSSRH_TOKEN }}
