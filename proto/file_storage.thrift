@@ -114,6 +114,24 @@ service FileStorage {
         throws (1: FileNotFound ex1)
 
     /*
+    * Сгенерировать ссылку на файл для загрузки с сервера с параметрами ответа
+    * file_data_id - id файла
+    * expires_at - время до которого ссылка будет считаться действительной
+    * file_name - имя файла для формирования Content-Disposition
+    * content_type - MIME-тип файла для формирования Content-Type
+    *
+    * Возвращает ссылку на файл для открытия в браузере и загрузки с исходным именем
+    *
+    * FileNotFound - файл не найден
+    * */
+    URL GenerateDownloadUrlWithOptions (
+        1: FileDataID file_data_id,
+        2: Timestamp expires_at,
+        3: FileName file_name,
+        4: string content_type
+    ) throws (1: FileNotFound ex1)
+
+    /*
     * Получить данные о файле
     * file_data_id - id файла
     *
@@ -131,9 +149,11 @@ service FileStorage {
     * Возвращает данные о файле, которые хранятся как метаданные файла
     *
     * FileNotFound - файл не найден
+    *
+    * Deprecated: используйте GetFileData
     * */
     FileData GetMultipartFileData (1: FileDataID file_data_id)
-        throws (1: FileNotFound ex1) ( deprecated )
+        throws (1: FileNotFound ex1)
 
     /*
     * Создать новую загрузку файла по частям
@@ -169,8 +189,10 @@ service FileStorage {
     * Возвращает ссылку на файл для дальнейшей загрузки с сервера
     *
     * FileNotFound - файл не найден
+    *
+    * Deprecated: используйте GenerateDownloadUrl
     * */
     URL GenerateMultipartDownloadUrl (1: FileDataID file_data_id, 2: Timestamp expires_at)
-        throws (1: FileNotFound ex1) ( deprecated )
+        throws (1: FileNotFound ex1)
 
 }
