@@ -5,6 +5,11 @@ on:
     branches:
       - "*"
 
+permissions:
+  contents: read
+
 jobs:
   build:
     uses: valitydev/java-workflow/.github/workflows/maven-thrift-build.yml@v4
+    with:
+      java-version: "21"
